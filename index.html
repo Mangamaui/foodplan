@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+
+        <title>Foodplanner</title>
+        <meta name="description" content="backbone practice">
+        <meta name="author" content="Mangamaui">
+
+        <link rel="stylesheet" href="styling/main.css">
+    </head>
+
+    <body>
+        <div class="wrap">
+            <header>
+                <h1>Foodplanner</h1>
+            </header>
+            <div class="main">
+                <div class="wrapper">
+                    <div id="dishes" class="list"></div>
+                    <div id="week" class="list"></div>
+                </div>
+            </div>
+        </div>
+
+        <script id="dishTemplate" type="text/template">
+            <h2><%= title %></h2>
+            <p><%= ingredients %></p>
+            <p><%= categories %></p>
+        </script>
+
+        <script id="dayTemplate" type="text/template">
+            <h2><%= name %></h2>
+            <p><%= dish %></p>
+        </script>
+
+        <script src="scripts/vendor/jquery.min.js"></script>
+        <script src="scripts/vendor/underscore.js"></script>
+        <script src="scripts/vendor/backbone.js"></script>
+        <script src="scripts/main.js"></script>
+    </body>
+</html>

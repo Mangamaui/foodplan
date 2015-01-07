@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0; }
+
+body {
+  color: green; }
+
+.wrap {
+  font-size: 0;
+  margin: 0 auto;
+  width: 1024px; }
+
+header {
+  margin: 50px 0; }
+
+h1 {
+  text-align: center;
+  font-size: 42px; }
+
+h2 {
+  font-size: 30px; }
+
+p {
+  font-size: 16px; }
+
+.list {
+  border: 1px solid black;
+  border-top: none;
+  box-sizing: border-box;
+  display: inline-block;
+  vertical-align: top;
+  width: 40%; }
+  .list:first-child {
+    margin-right: 20%; }
+  .list div {
+    border-top: 1px solid black;
+    padding: 10px; }
+
+/*# sourceMappingURL=main.css.map */
