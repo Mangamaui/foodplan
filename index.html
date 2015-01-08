@@ -34,9 +34,26 @@
             <p><%= dish %></p>
         </script>
 
+         <script id="AddDishTemplate" type="text/template">
+            <div class="popup">
+                <h2>Add a new dish</h2>
+                <form>
+                    <label for="ipDishtitle">Dish title:</label>
+                    <input type="text" id="ipDishtitle" name="ipDishtitle" class="ipDishtitle" />
+                    <label for="ipDishingredients">ingredients</label>
+                    <input type:"text" id="ipDishingredients" name="ipDishingredients", class="ipDishingredients" />
+                    <input type="submit" />
+                </form>
+            </div>
+        </script>
+
         <script src="scripts/vendor/jquery.min.js"></script>
         <script src="scripts/vendor/underscore.js"></script>
         <script src="scripts/vendor/backbone.js"></script>
+        <script src="scripts/general.js"></script>
+        <script src="scripts/models.js"></script>
+        <script src="scripts/collections.js"></script>
+        <script src="scripts/views.js"></script>
         <script src="scripts/main.js"></script>
     </body>
 </html>
