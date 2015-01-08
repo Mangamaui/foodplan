@@ -12,8 +12,12 @@
 	    },
 
         validate: function(attrs) {
-            if(typeof(attrs.title) == 'string') {
-                console.log("valid");
+            if (typeof(attrs.title) !== 'string') {
+                return "title isn't text";
+            }
+
+            if (typeof(attrs.ingredients) !== 'string') {
+                return "ingredients should be text";
             }
         }
 	});
