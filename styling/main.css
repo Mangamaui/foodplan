@@ -13,6 +13,10 @@ body {
 header {
   margin: 50px 0; }
 
+footer {
+  height: 100px;
+  width: 100%; }
+
 h1 {
   text-align: center;
   font-size: 42px; }
@@ -35,5 +39,24 @@ p {
   .list div {
     border-top: 1px solid black;
     padding: 10px; }
+
+.popup {
+  border: 1px solid black;
+  display: inline-block;
+  padding: 20px;
+  width: 50%; }
+
+form label {
+  display: block;
+  font-size: 16px;
+  margin-top: 10px;
+  margin-bottom: 5px; }
+form input {
+  display: block;
+  height: 22px;
+  width: 100%; }
+form input[type="submit"] {
+  display: block;
+  margin-top: 10px; }
 
 /*# sourceMappingURL=main.css.map */

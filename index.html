@@ -17,10 +17,11 @@
             </header>
             <div class="main">
                 <div class="wrapper">
-                    <div id="dishes" class="list"></div>
-                    <div id="week" class="list"></div>
                 </div>
             </div>
+            <footer>
+                
+            </footer>
         </div>
 
         <script id="dishTemplate" type="text/template">
@@ -34,14 +35,14 @@
             <p><%= dish %></p>
         </script>
 
-         <script id="AddDishTemplate" type="text/template">
+         <script id="addDishTemplate" type="text/template">
             <div class="popup">
                 <h2>Add a new dish</h2>
                 <form>
                     <label for="ipDishtitle">Dish title:</label>
                     <input type="text" id="ipDishtitle" name="ipDishtitle" class="ipDishtitle" />
                     <label for="ipDishingredients">ingredients</label>
-                    <input type:"text" id="ipDishingredients" name="ipDishingredients", class="ipDishingredients" />
+                    <input type="text" id="ipDishingredients" name="ipDishingredients" class="ipDishingredients" />
                     <input type="submit" />
                 </form>
             </div>

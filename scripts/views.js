@@ -3,10 +3,14 @@
 /*================================*/
 (function() {
     var Days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-    
+
     FoodPlanner.DishView = Backbone.View.extend({
         className: 'dish',
         template: $('#dishTemplate').html(),
+
+        initialize: function() {
+            this.model.on('change', this.render, this);
+        },
 
         render: function () {
             var tmpl = _.template(this.template);
@@ -18,7 +22,8 @@
     });
 
     FoodPlanner.MenuView = Backbone.View.extend({
-        el: $("#dishes"),
+        id:         'dishes',
+        className:  'list',
      
         initialize: function() {
             _.bindAll(this, 'render');
@@ -27,6 +32,7 @@
             this.render();
 
             this.listenTo(this.collection, 'reset', this.render);
+            this.listenTo(this.collection, 'add', this.render);
         },
      
         render: function() {
@@ -66,7 +72,8 @@
 
 
     FoodPlanner.WeekView = Backbone.View.extend({
-        el: $("#week"),
+        id:         'week',
+        className:  'list',
 
         initialize: function() {
             this.collection = new FoodPlanner.Week();
@@ -109,6 +116,9 @@
 
             this.weekview = new FoodPlanner.WeekView();
             $(".wrapper").append(this.weekview.$el);
+
+            this.addDishview = new FoodPlanner.AddDishView();
+            $(".wrapper").append(this.addDishview.$el);
         },
 
         selectDish: function(e) {
@@ -137,7 +147,17 @@
     });
 
     FoodPlanner.AddDishView = Backbone.View.extend({
-        className: 'addDish'
+        className: 'addDish',
+        template: $('#addDishTemplate').html(),
+
+        initialize: function() {
+            this.render();
+        },
+
+        render: function() {
+            this.$el.html(this.template);
+            return this;
+        }
     });
     
 })();
