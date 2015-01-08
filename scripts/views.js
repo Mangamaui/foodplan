@@ -150,6 +150,10 @@
         className: 'addDish',
         template: $('#addDishTemplate').html(),
 
+        events: {
+            'click input[type="submit"]': 'addDish'
+        },
+
         initialize: function() {
             this.render();
         },
@@ -157,6 +161,23 @@
         render: function() {
             this.$el.html(this.template);
             return this;
+        },
+
+        addDish: function(e) {
+            e.preventDefault();
+
+            var dish = new FoodPlanner.Dish();
+            
+            this.$el.find('input.field').each(function(key, field) {
+                var name = field.name;
+                var val = field.value;
+
+                dish.set(name, val);
+            });
+
+            var view = FoodPlanner.indexView;
+            var collection = view.menuview.collection;
+            collection.add(dish);
         }
     });
     
