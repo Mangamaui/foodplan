@@ -8,26 +8,34 @@
         <meta name="author" content="Mangamaui">
 
         <link rel="stylesheet" href="styling/main.css">
+        <link rel="stylesheet" href="styling/vendor/selectize.css">
     </head>
 
     <body>
-        <div class="wrap">
-            <header>
+        <script id="headerTemplate" type="text/template">
+            <div class="wrapper">
                 <h1>Foodplanner</h1>
-            </header>
-            <div class="main">
-                <div class="wrapper">
+            </div>
+        </script>
+
+        <script id="footerTemplate" type="text/template">
+            <div class="wrapper"></div>
+        </script>
+
+        <script id="mainTemplate" type="text/template">
+            <div class="wrapper">
+                <div class="toolbox">
+                    <button id="addDishBtn" class="button">Add</button>
+                    <button id="deleteDishBtn" class="button">Delete</button>
+                    <button id="editDishBtn" class="button">Edit</button>
                 </div>
             </div>
-            <footer>
-                
-            </footer>
-        </div>
+        </script>
 
         <script id="dishTemplate" type="text/template">
             <h2><%= title %></h2>
-            <p><%= ingredients %></p>
-            <p><%= categories %></p>
+            <p class="ingredients"><%= ingredients %></p>
+            <p class="categories"><%= categories %></p>
         </script>
 
         <script id="dayTemplate" type="text/template">
@@ -41,14 +49,18 @@
                 <form>
                     <label for="title">Dish title:</label>
                     <input type="text" name="title" class="field" />
-                    <label for="ingredients">ingredients</label>
-                    <input type="text" name="ingredients" class="field" />
-                    <input type="submit" name="submit button"/>
+                    <label for="ingredients">Ingredients:</label>
+                    <input type="text" name="ingredients" class="field tags" />
+                    <label for="categories">Categories:</label>
+                    <input type="text" name="categories" class="field tags" />
+                    <button class="submit">Submit</button>
                 </form>
+                <button id="closePopup" class="close">x</button>
             </div>
         </script>
 
         <script src="scripts/vendor/jquery.min.js"></script>
+        <script src="scripts/vendor/selectize.js"></script>
         <script src="scripts/vendor/underscore.js"></script>
         <script src="scripts/vendor/backbone.js"></script>
         <script src="scripts/general.js"></script>

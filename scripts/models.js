@@ -19,6 +19,10 @@
             if (typeof(attrs.ingredients) !== 'string') {
                 return "ingredients should be text";
             }
+
+            if (typeof(attrs.categories) !== 'string') {
+                return "categories should be text";
+            }
         }
 	});
 

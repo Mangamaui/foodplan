@@ -99,26 +99,37 @@
     });
 
     FoodPlanner.MainView = Backbone.View.extend({
-        el: $('.main'),
+        tagName: 'main',
         dish: '',
+        popup: false,
+        template: $('#mainTemplate').html(),
 
         events: {
-           'click div.dish': 'selectDish',
-           'click div.day': 'placeDish'
+           'click div.dish':            'selectDish',
+           'click div.day':             'placeDish',
+           'click button#addDishBtn':   'togglePopup',
+           'click button#closePopup':   'togglePopup'
         },
 
         initialize: function() {
             this.menuview = new FoodPlanner.MenuView();
-            $(".wrapper").append(this.menuview.$el);
-
             // todo: cleanup
             this.menuview.collection.fetch({ reset: true });
 
             this.weekview = new FoodPlanner.WeekView();
-            $(".wrapper").append(this.weekview.$el);
-
             this.addDishview = new FoodPlanner.AddDishView();
-            $(".wrapper").append(this.addDishview.$el);
+
+            this.render();
+
+        },
+
+        render: function() {
+            this.$el.html(this.template);
+            var $wrapper  = this.$el.find('.wrapper');
+
+            $wrapper.prepend(this.weekview.el);
+            $wrapper.prepend(this.menuview.el);
+
         },
 
         selectDish: function(e) {
@@ -142,16 +153,30 @@
             }
 
             this.dish = '';
+        },
+
+        togglePopup: function() {
+
+            var $wrapper  = this.$el.find('.wrapper');
+
+            if(this.popup) {
+               var $popup = this.addDishview.$el;
+                $popup.remove();
+                this.popup = false;
+            } else {
+                $wrapper.append(this.addDishview.el);
+                this.popup = true;
+            }
         }
 
     });
 
     FoodPlanner.AddDishView = Backbone.View.extend({
-        className: 'addDish',
+        className: 'popupwrap',
         template: $('#addDishTemplate').html(),
 
         events: {
-            'click input[type="submit"]': 'addDish'
+            'click button.submit': 'addDish'
         },
 
         initialize: function() {
@@ -160,6 +185,19 @@
 
         render: function() {
             this.$el.html(this.template);
+            var $tagfields = this.$el.find('input.field.tags');
+
+            $tagfields.selectize({
+                delimiter: ',',
+                hideSelected: true,
+                persist: false,
+                create: function(input) {
+                    return {
+                        value: input,
+                        text: input
+                    }
+                }
+            });
             return this;
         },
 
@@ -175,9 +213,58 @@
                 dish.set(name, val);
             });
 
-            var view = FoodPlanner.indexView;
+            var view = FoodPlanner.indexView.mainview;
             var collection = view.menuview.collection;
+            console.log(collection);
             collection.add(dish);
+        }
+    });
+
+    FoodPlanner.HeaderView = Backbone.View.extend({
+        tagName:     'header',
+        template:    $('#headerTemplate').html(),
+
+        initialize: function() {
+            this.render();
+        },
+
+        render: function() {
+            this.$el.html(this.template);
+        }
+
+    });
+
+    FoodPlanner.FooterView = Backbone.View.extend({
+        tagName:    'footer',
+        template:   $('#footerTemplate').html(),
+
+        initialize: function() {
+            this.render();
+        },
+
+        render: function() {
+            this.$el.html(this.template);
+        }
+
+    });
+
+    FoodPlanner.IndexView = Backbone.View.extend({
+        className: 'wrap',
+
+        initialize: function() {
+            this.header = new FoodPlanner.HeaderView();
+            this.mainview = new FoodPlanner.MainView();
+            this.footer = new FoodPlanner.FooterView();
+
+            this.render();
+        },
+
+        render: function() {
+            this.$el.append(this.header.el);
+            this.$el.append(this.mainview.el);
+            this.$el.append(this.footer.el);
+
+            $('body').prepend(this.$el);
         }
     });
     

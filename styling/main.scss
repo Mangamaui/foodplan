@@ -35,6 +35,19 @@ p {
 	font-size: 16px;
 }
 
+.toolbox {
+    margin-top : 20px;
+}
+
+    button {
+        margin-right: 10px;
+        padding: 10px;
+    }
+
+//=============================//
+//             lists           //
+//=============================//
+
 .list {
 	border: 1px solid black;
 	border-top: none;
@@ -53,11 +66,53 @@ p {
 	}
 }
 
-.popup {
-    border: 1px solid black;
-    display: inline-block;
-    padding: 20px;
-    width: 50%;
+.dish {
+    h2 {
+        margin-bottom: 10px;
+    }
+
+    p.categories {
+        font-weight: bold;
+        margin-top: 5px;
+    }
+}
+
+//=============================//
+//             popup           //
+//=============================//
+
+.popupwrap {
+    background-color: rgba(0,0,0, 0.8);
+    position: fixed;
+    text-align: center;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    .popup {
+        background: white;
+        border: 1px solid black;
+        display: inline-block;
+        padding: 20px;
+        position: relative;
+        text-align: left;
+        top: 100px;
+        width: 50%;
+
+        button.close {
+            background-color: red;
+            border: none;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            outline: none;
+            position: absolute;
+            right: -10px;
+            top: 0;
+
+        }
+    }
 }
 
 form {
@@ -74,7 +129,7 @@ form {
         width: 100%;
     }
 
-    input[type="submit"] {
+    button.submit {
         display: block;
         margin-top: 10px;
     }

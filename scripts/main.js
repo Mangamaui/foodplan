@@ -1,4 +1,7 @@
 $(function() {
 
-    FoodPlanner.indexView = new FoodPlanner.MainView();
+    APP.initialize();
 });
+
+
+

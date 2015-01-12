@@ -27,6 +27,13 @@ h2 {
 p {
   font-size: 16px; }
 
+.toolbox {
+  margin-top: 20px; }
+
+button {
+  margin-right: 10px;
+  padding: 10px; }
+
 .list {
   border: 1px solid black;
   border-top: none;
@@ -40,11 +47,39 @@ p {
     border-top: 1px solid black;
     padding: 10px; }
 
-.popup {
-  border: 1px solid black;
-  display: inline-block;
-  padding: 20px;
-  width: 50%; }
+.dish h2 {
+  margin-bottom: 10px; }
+.dish p.categories {
+  font-weight: bold;
+  margin-top: 5px; }
+
+.popupwrap {
+  background-color: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  text-align: center;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0; }
+  .popupwrap .popup {
+    background: white;
+    border: 1px solid black;
+    display: inline-block;
+    padding: 20px;
+    position: relative;
+    text-align: left;
+    top: 100px;
+    width: 50%; }
+    .popupwrap .popup button.close {
+      background-color: red;
+      border: none;
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+      outline: none;
+      position: absolute;
+      right: -10px;
+      top: 0; }
 
 form label {
   display: block;
@@ -55,7 +90,7 @@ form input {
   display: block;
   height: 22px;
   width: 100%; }
-form input[type="submit"] {
+form button.submit {
   display: block;
   margin-top: 10px; }
 
