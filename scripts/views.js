@@ -5,7 +5,7 @@
     var Days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
     FoodPlanner.DishView = Backbone.View.extend({
-        className: 'dish',
+        className: 'dish listitem',
         template: $('#dishTemplate').html(),
 
         initialize: function() {
@@ -33,6 +33,7 @@
 
             this.listenTo(this.collection, 'reset', this.render);
             this.listenTo(this.collection, 'add', this.render);
+            this.listenTo(this.collection, 'destroy', this.render);
         },
      
         render: function() {
@@ -54,7 +55,7 @@
     });
 
     FoodPlanner.DayView = Backbone.View.extend({
-        className: 'day',
+        className: 'day listitem',
         template: $('#dayTemplate').html(),
 
         initialize: function() {
@@ -108,7 +109,10 @@
            'click div.dish':            'selectDish',
            'click div.day':             'placeDish',
            'click button#addDishBtn':   'togglePopup',
-           'click button#closePopup':   'togglePopup'
+           'click button#closePopup':   'togglePopup',
+           'click button#editDishBtn':  'toggleEditableMode',
+           'click button#saveDishBtn':  'saveDishes',
+           'click button#deleteDishBtn':'toggleDeleteMode'
         },
 
         initialize: function() {
@@ -167,6 +171,86 @@
                 $wrapper.append(this.addDishview.el);
                 this.popup = true;
             }
+        },
+
+        saveDishes: function() {
+            this.toggleEditableMode();
+
+            var $parent = $('.dish');
+            var collection = this.menuview.collection;
+
+            _.each( $parent, function(dish){
+                var $dish = $(dish);
+
+                var cid = $dish.attr('cid');
+
+                var title           = $dish.find('.title').text();
+                var ingredients     = $dish.find('.ingredients').text();
+                var categories      = $dish.find('.categories').text();
+                var selectedDish    = collection.get(cid);
+
+                selectedDish.set({
+                    'title':        title,
+                    'ingredients':  ingredients,
+                    'categories':   categories
+                });
+            });
+        },
+
+        toggleEditableMode: function() {
+            //show/hide elements
+            $('div.icon').toggleClass('show');
+            $('#saveDishBtn').toggle();
+            $('#editDishBtn').toggle();
+
+            //get editable items
+            var $parent = $('.dish');
+            var $children = $parent.children().not("div.icon");
+            var contenteditable = $children.attr('contenteditable');
+            
+            //toggle editable on/off
+            if (contenteditable == true) {
+                $children.attr('contenteditable', false);
+            } else {
+                $children.attr('contenteditable', true);
+            }
+            
+        },
+
+        toggleDeleteMode: function() {
+            $("#dishes").toggleClass("deletable");
+
+            var deleteable = $("#dishes.deletable").length;
+
+            if(deleteable > 0) {
+                $('.dish').on('click', this.setSelected);
+            } else {
+                this.deleteSelectedDishes();
+
+                $('.dish').off('click', this.setSelected);
+                $('.dish').removeClass('selected');
+            }
+        },
+
+        setSelected: function(e) {
+            var $selected = $(e.currentTarget);
+            $selected.toggleClass('selected');
+        },
+
+        deleteSelectedDishes: function() {
+            var selection = $('.dish.selected').length;
+            
+            if(selection > 0) {
+                var $parent = $('.dish.selected');
+                var collection = this.menuview.collection;
+
+                _.each( $parent, function(dish){
+                    var $dish = $(dish);
+                    var cid = $dish.attr('cid');
+                    var selectedDish    = collection.get(cid);
+                    selectedDish.destroy();
+                });
+            }
         }
 
     });
@@ -215,7 +299,6 @@
 
             var view = FoodPlanner.indexView.mainview;
             var collection = view.menuview.collection;
-            console.log(collection);
             collection.add(dish);
         }
     });

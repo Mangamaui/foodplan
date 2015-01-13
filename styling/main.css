@@ -29,8 +29,14 @@ p {
 
 .toolbox {
   margin-top: 20px; }
+  .toolbox button#saveDishBtn {
+    background-color: green;
+    border: none;
+    color: white;
+    display: none; }
 
 button {
+  cursor: pointer;
   margin-right: 10px;
   padding: 10px; }
 
@@ -43,15 +49,30 @@ button {
   width: 40%; }
   .list:first-child {
     margin-right: 20%; }
-  .list div {
+  .list div.listitem {
     border-top: 1px solid black;
     padding: 10px; }
 
-.dish h2 {
-  margin-bottom: 10px; }
-.dish p.categories {
-  font-weight: bold;
-  margin-top: 5px; }
+.dish {
+  position: relative; }
+  .dish h2 {
+    margin-bottom: 10px; }
+  .dish p.categories {
+    font-weight: bold;
+    margin-top: 5px; }
+  .dish div.icon {
+    display: none;
+    font-size: 16px;
+    height: 20px;
+    position: absolute;
+    right: 0;
+    top: 10px;
+    width: 20px; }
+    .dish div.icon.show {
+      display: block; }
+  .dish.selected {
+    background-color: green;
+    color: white; }
 
 .popupwrap {
   background-color: rgba(0, 0, 0, 0.8);

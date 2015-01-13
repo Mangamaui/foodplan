@@ -28,12 +28,14 @@
                     <button id="addDishBtn" class="button">Add</button>
                     <button id="deleteDishBtn" class="button">Delete</button>
                     <button id="editDishBtn" class="button">Edit</button>
+                    <button id="saveDishBtn" class="button">Save</button>
                 </div>
             </div>
         </script>
 
         <script id="dishTemplate" type="text/template">
-            <h2><%= title %></h2>
+            <div class="icon">E</div>
+            <h2 class="title"><%= title %></h2>
             <p class="ingredients"><%= ingredients %></p>
             <p class="categories"><%= categories %></p>
         </script>
