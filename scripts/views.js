@@ -100,10 +100,11 @@
     });
 
     FoodPlanner.MainView = Backbone.View.extend({
-        tagName: 'main',
-        dish: '',
-        popup: false,
-        template: $('#mainTemplate').html(),
+        tagName:    'main',
+        dish:       '',
+        mode:       'normal',
+        popup:      false,
+        template:   $('#mainTemplate').html(),
 
         events: {
            'click div.dish':            'selectDish',
@@ -137,11 +138,19 @@
         },
 
         selectDish: function(e) {
-            var $target = $(e.currentTarget);
-            var cid = $target.attr('cid');
-            var dish = this.menuview.collection.get(cid);
-            var title = dish.get('title');
-            this.dish = title;
+             var $target = $(e.currentTarget);
+
+            if (this.mode == 'normal') {
+                $('.dish').removeClass('selected');
+
+                var cid = $target.attr('cid');
+                var dish = this.menuview.collection.get(cid);
+                var title = dish.get('title');
+                this.dish = title;
+
+            } else if (this.mode == 'delete') {
+                $target.toggleClass('selected');
+            }
         },
 
         placeDish: function(e) {
@@ -218,17 +227,12 @@
         },
 
         toggleDeleteMode: function() {
-            $("#dishes").toggleClass("deletable");
 
-            var deleteable = $("#dishes.deletable").length;
-
-            if(deleteable > 0) {
-                $('.dish').on('click', this.setSelected);
+            if(this.mode != "delete") {
+                this.mode = 'delete';
             } else {
+                this.mode = 'normal';
                 this.deleteSelectedDishes();
-
-                $('.dish').off('click', this.setSelected);
-                $('.dish').removeClass('selected');
             }
         },
 
