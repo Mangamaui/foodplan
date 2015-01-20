@@ -2,11 +2,10 @@
 /*             views              */
 /*================================*/
 (function() {
-    var Days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
     FoodPlanner.DishView = Backbone.View.extend({
-        className: 'dish listitem',
-        template: $('#dishTemplate').html(),
+        className:  'dish listitem',
+        template:   $('#dishTemplate').html(),
 
         initialize: function() {
             this.model.on('change', this.render, this);
@@ -44,6 +43,12 @@
             _.each(this.collection.models, function (item) {
                 that.renderDish(item);
             });
+
+            FoodPlanner.IngredientList = this.collection.generateList('ingredients');
+            FoodPlanner.CategoryList = this.collection.generateList('categories');
+
+            console.log(FoodPlanner.IngredientList);
+            console.log(FoodPlanner.CategoryList);
         },
      
         renderDish: function(item) {
@@ -284,6 +289,9 @@
                         value: input,
                         text: input
                     }
+                },
+                load: function(query ,callback) {
+                   callback(query);
                 }
             });
             return this;

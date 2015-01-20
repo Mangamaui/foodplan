@@ -7,7 +7,20 @@
         className: 'list',
         id:     'dishes',
         model:  FoodPlanner.Dish ,
-        url:    'scripts/dishes.json'
+        url:    'scripts/dishes.json',
+
+        generateList: function(attributes) {
+            var list  = _.flatten(
+                this.map(function(dish) {
+                    return dish.get(attributes);
+                })
+            );
+
+            return list = _.uniq(list);
+        },
+
+
+
     });
 
     FoodPlanner.Week = Backbone.Collection.extend({
