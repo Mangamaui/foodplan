@@ -47,8 +47,8 @@
             FoodPlanner.IngredientList = this.collection.generateList('ingredients');
             FoodPlanner.CategoryList = this.collection.generateList('categories');
 
-            console.log(FoodPlanner.IngredientList);
-            console.log(FoodPlanner.CategoryList);
+            // console.log(FoodPlanner.IngredientList);
+            // console.log(FoodPlanner.CategoryList);
         },
      
         renderDish: function(item) {
@@ -306,12 +306,16 @@
                 var name = field.name;
                 var val = field.value;
 
-                dish.set(name, val);
+                dish.set({name: val});
+                console.log(name + " "  + val);
             });
+
+            console.log(dish);
 
             var view = FoodPlanner.indexView.mainview;
             var collection = view.menuview.collection;
             collection.add(dish);
+            dish.save();
         }
     });
 

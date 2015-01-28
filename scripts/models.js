@@ -12,17 +12,22 @@
 	    },
 
         validate: function(attrs) {
-            if (typeof(attrs.title) !== 'string') {
-                return "title isn't text";
-            }
+            // if (typeof(attrs.title) !== 'string') {
+            //     return "title isn't text";
+            // }
 
-            if (typeof(attrs.ingredients) !== 'string') {
-                return "ingredients should be text";
-            }
+            // if (typeof(attrs.ingredients) !== 'string') {
+            //     return "ingredients should be text";
+            // }
 
-            if (typeof(attrs.categories) !== 'string') {
-                return "categories should be text";
-            }
+            // if (typeof(attrs.categories) !== 'string') {
+            //     return "categories should be text";
+            // }
+        },
+
+        parse: function(response) {
+            console.log(response);
+            return response;
         }
 	});
 

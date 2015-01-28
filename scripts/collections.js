@@ -7,7 +7,7 @@
         className: 'list',
         id:     'dishes',
         model:  FoodPlanner.Dish ,
-        url:    'scripts/dishes.json',
+        url:    '/api/dishes',
 
         generateList: function(attributes) {
             var list  = _.flatten(
@@ -19,7 +19,9 @@
             return list = _.uniq(list);
         },
 
-
+        parse: function(response, options) {
+            return response.dishes;
+        }
 
     });
 
