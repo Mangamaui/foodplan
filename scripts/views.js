@@ -30,9 +30,7 @@
             this.collection = new FoodPlanner.Dishlist();
             this.render();
 
-            this.listenTo(this.collection, 'reset', this.render);
-            this.listenTo(this.collection, 'add', this.render);
-            this.listenTo(this.collection, 'destroy', this.render);
+            this.listenTo(this.collection, 'reset add destroy', this.render);
         },
      
         render: function() {
@@ -208,6 +206,7 @@
                     'ingredients':  ingredients,
                     'categories':   categories
                 });
+                selectedDish.save();
             });
         },
 
@@ -256,7 +255,7 @@
                 _.each( $parent, function(dish){
                     var $dish = $(dish);
                     var cid = $dish.attr('cid');
-                    var selectedDish    = collection.get(cid);
+                    var selectedDish = collection.get(cid);
                     selectedDish.destroy();
                 });
             }
@@ -302,18 +301,22 @@
 
             var dish = new FoodPlanner.Dish();
             
-            this.$el.find('input.field').each(function(key, field) {
-                var name = field.name;
-                var val = field.value;
+            var title          = $("#ip-title").val();
+            var ingredients    = $("#ip-ingredients").val();
+            var categories     = $("#ip-categories").val();
 
-                dish.set({name: val});
-                console.log(name + " "  + val);
-            });
+            ingredients =  ingredients.split(',');
+            categories = categories.split(',');
 
-            console.log(dish);
+            var attributes = {
+                "title": title,
+                "ingredients": ingredients,
+                "categories": categories
+                };
 
             var view = FoodPlanner.indexView.mainview;
             var collection = view.menuview.collection;
+            dish.set(attributes);
             collection.add(dish);
             dish.save();
         }
