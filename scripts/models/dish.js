@@ -1,15 +1,11 @@
-/*================================*/
-/*             models             */
-/*================================*/
-
 (function() {
-	FoodPlanner.Dish = Backbone.Model.extend({
+    FoodPlanner.classes.models.Dish = Backbone.Model.extend({
 
-	    defaults: {
-	        title:          'dish name',
-	        ingredients:    'ingredients',
-	        categories:     'dish categories'
-	    },
+        defaults: {
+            title:          'dish name',
+            ingredients:    'ingredients',
+            categories:     'dish categories'
+        },
 
         // urlRoot: '/api/dishes',
 
@@ -41,15 +37,6 @@
             response.id = response._id;
             return response;
         }
-	});
-
-	FoodPlanner.Day = Backbone.Model.extend({
-
-	    defaults: {
-	        id:     0,
-	        name:   'day',
-	        dish:   'fill in dish'
-	    }
-	});
+    });
 
 })();
