@@ -25,10 +25,9 @@
             FoodPlanner.IngredientList = this.collection.generateList('ingredients');
             FoodPlanner.CategoryList = this.collection.generateList('categories');
 
-             console.log(FoodPlanner.IngredientList);
-             console.log(FoodPlanner.CategoryList);
+             // console.log(FoodPlanner.IngredientList);
+             // console.log(FoodPlanner.CategoryList);
 
-             this.view = new FoodPlanner.classes.views.IngredientView();
         },
      
         renderDish: function(item) {

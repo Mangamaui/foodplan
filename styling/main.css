@@ -115,4 +115,13 @@ form button.submit {
   display: block;
   margin-top: 10px; }
 
+.shoppinglist {
+  font-size: 14px; }
+  .shoppinglist li span.name {
+    display: inline-block;
+    width: 30%; }
+  .shoppinglist li span.quantity {
+    display: inline-block;
+    width: 10%; }
+
 /*# sourceMappingURL=main.css.map */

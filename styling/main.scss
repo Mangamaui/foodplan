@@ -163,3 +163,19 @@ form {
         margin-top: 10px;
     }
 }
+
+.shoppinglist {
+    font-size: 14px;
+
+    li {
+        span.name {
+            display: inline-block;
+            width: 30%;
+        }
+
+        span.quantity {
+            display: inline-block;
+            width: 10%;
+        }
+    }
+}
