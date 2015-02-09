@@ -3,8 +3,7 @@
         classes: {
             models: {},
             collections: {},
-            views: {},
-            routers: {}
+            views: {}
         }
 
     };

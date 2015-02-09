@@ -3,7 +3,8 @@
     window.APP = {
 
         initialize: function() {
-            FoodPlanner.indexView = new FoodPlanner.classes.views.IndexView();
+            FoodPlanner.router = new FoodPlanner.classes.Router();
+            Backbone.history.start(); 
         },
 
         trimString: function(arr) {
