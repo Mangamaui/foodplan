@@ -3,6 +3,9 @@
         tagName:    'main',
 
         initialize: function() {
+            _.bindAll(this, "generateShoppingList");
+
+            this.listenTo(FoodPlanner.menu, "listsUpdated", this.generateShoppingList);
             this.generateShoppingList();
         },
 
@@ -10,6 +13,7 @@
             var result = _.countBy(FoodPlanner.IngredientList);
             var $list = $('<ul />');
             $list.addClass('shoppinglist');
+            $list.empty();
             var html = "";
             
             for(key in result) {

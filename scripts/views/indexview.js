@@ -20,19 +20,15 @@
 
         initialize: function() {
             this.menuview = new FoodPlanner.classes.views.MenuView();
-            // todo: cleanup
-            this.menuview.collection.fetch({ reset: true });
-
             this.weekview = new FoodPlanner.classes.views.WeekView();
             this.addDishview = new FoodPlanner.classes.views.AddDishView();
 
             this.render();
-
         },
 
         render: function() {
             this.$el.html(this.template);
-            var $wrapper  = this.$el.find('.wrapper');
+            var $wrapper = this.$el.find('.wrapper');
 
             $wrapper.prepend(this.weekview.el);
             $wrapper.prepend(this.menuview.el);

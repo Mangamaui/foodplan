@@ -7,27 +7,30 @@
         initialize: function() {
             _.bindAll(this, 'render');
 
-            this.collection = new FoodPlanner.classes.collections.Dishlist();
+            this.collection = FoodPlanner.menu;
             this.render();
 
             this.listenTo(this.collection, 'reset add destroy', this.render);
         },
      
-        render: function() {
+        render: function(x) {
             var that = this;
 
-            this.$el.empty();
+            if (!x) {
+                return;
+            } else if (x.models) {
+                // = collection
+                this.$el.empty();
 
-            _.each(this.collection.models, function (item) {
-                that.renderDish(item);
-            });
+                _.each(this.collection.models, function (item) {
+                    that.renderDish(item);
+                });
+            } else {
+                // = model
+                that.renderDish(x);
+            }
 
-            FoodPlanner.IngredientList = this.collection.generateList('ingredients');
-            FoodPlanner.CategoryList = this.collection.generateList('categories');
-
-             // console.log(FoodPlanner.IngredientList);
-             // console.log(FoodPlanner.CategoryList);
-
+            console.log("render");
         },
      
         renderDish: function(item) {

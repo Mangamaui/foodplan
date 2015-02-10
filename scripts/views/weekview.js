@@ -5,7 +5,7 @@
         className:  'list',
 
         initialize: function() {
-            this.collection = new FoodPlanner.classes.collections.Week();
+            this.collection = FoodPlanner.week;
             this.render();
         },
 

@@ -5,10 +5,26 @@
         model:  FoodPlanner.classes.models.Dish ,
         url:    '/api/dishes',
 
-        generateList: function(attributes) {
+        initialize: function() {
+            _.bindAll(this, "changeHandler");
+
+            this.listenTo(this, "reset", this.changeHandler);
+            this.fetch({ reset: true });
+        },
+
+
+        changeHandler: function() {
+            FoodPlanner.IngredientList = this.generateList('ingredients');
+            FoodPlanner.CategoryList = this.generateList('categories');
+
+            // trigger event to listen to
+            this.trigger("listsUpdated");
+        },
+
+        generateList: function(attribute) {
             var list  = _.flatten(
                 this.map(function(dish) {
-                    var ingredients = dish.get(attributes);
+                    var ingredients = dish.get(attribute);
                     ingredients = APP.toArray(ingredients[0]);
                     trimmed = APP.trimString(ingredients);
                     return trimmed;
