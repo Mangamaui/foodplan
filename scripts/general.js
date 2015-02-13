@@ -2,12 +2,20 @@
 
     window.APP = {
 
+        /**
+         * here all the basics needs of the app get initialized/loaded
+         * 
+         */
         initialize: function() {
             APP.createAPPData();
             FoodPlanner.router = new FoodPlanner.classes.Router();
             Backbone.history.start(); 
         },
 
+        /**
+         * An instance of every collection type get's made
+         * 
+         */
         createAPPData: function() {
             FoodPlanner.menu = new FoodPlanner.classes.collections.Dishlist();
             FoodPlanner.week = new FoodPlanner.classes.collections.Week();
@@ -15,8 +23,14 @@
             FoodPlanner.menu.on("reset", this.addExamples);
         },
 
+        /**
+         * On first startup the database will be empty, this function
+         * adds example data to the app.
+         */
         addExamples: function() {
             var storage_key = "foodplanner_added_examples";
+            console.log(localStorage.getItem(storage_key));
+            //localStorage.setItem(storage_key, "0");
 
             if (localStorage.getItem(storage_key) == "1") return;
             else if (APP.added_examples) return;
@@ -46,6 +60,11 @@
             });
         },
 
+        /**
+         * trimString removes whitespace from strings
+         * @param  Array - arr - an array with strings
+         * @return Array         an new array filled with the trimmed strings
+         */
         trimString: function(arr) {
             var trimmed = _.map(arr, function(item) {
               return item.trim();
@@ -54,6 +73,11 @@
             return trimmed;
         },
 
+        /**
+         * toArray turns a String into an Array
+         * @param  String - str - a string that contains a list
+         * @return Array          the converted String 
+         */
         toArray: function(str) {
            var arr = str.split(',');
            return arr;

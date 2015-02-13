@@ -21,6 +21,11 @@
             this.trigger("listsUpdated");
         },
 
+        /**
+         * GenerateList generates a list according to passed attribute
+         * @param  String -  attribute - pass on an attribute that's part of the dish model
+         * @return Array  -            - the array that has been created with the data of the passed attribute
+         */
         generateList: function(attribute) {
             var list  = _.flatten(
                 this.map(function(dish) {

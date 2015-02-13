@@ -151,7 +151,9 @@
                     var $dish = $(dish);
                     var cid = $dish.attr('cid');
                     var selectedDish = collection.get(cid);
+                    var view = $dish.get(0).view;
                     selectedDish.destroy();
+                    view.remove();
                 });
             }
         },

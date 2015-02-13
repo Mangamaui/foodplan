@@ -7,7 +7,7 @@
             categories:     'dish categories'
         },
 
-        // urlRoot: '/api/dishes',
+        urlRoot: '/api/dishes',
 
         validate: function(attrs) {
             // if (typeof(attrs.title) !== 'string') {

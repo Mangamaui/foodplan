@@ -5,6 +5,7 @@
         template:   $('#dishTemplate').html(),
 
         initialize: function() {
+            this.el.view = this;
             this.model.on('change', this.render, this);
         },
 

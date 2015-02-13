@@ -10,7 +10,7 @@
             this.collection = FoodPlanner.menu;
             this.render();
 
-            this.listenTo(this.collection, 'reset add destroy', this.render);
+            this.listenTo(this.collection, 'reset add', this.render);
         },
      
         render: function(x) {
